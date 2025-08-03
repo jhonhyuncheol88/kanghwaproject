@@ -5,7 +5,7 @@ import i18n from '../services/i18n';
  * @param {number} number - 포맷할 숫자
  * @returns {string} 포맷된 문자열
  */
-export const formatNumber = (number) => {
+export const formatNumber = (number: number) => {
   return new Intl.NumberFormat('ko-KR').format(number);
 };
 
@@ -14,7 +14,7 @@ export const formatNumber = (number) => {
  * @param {Date} date - 포맷할 날짜 객체
  * @returns {string} 포맷된 날짜 문자열
  */
-export const formatDate = (date) => {
+export const formatDate = (date: Date) => {
   const lang = i18n.language; // 현재 설정된 언어 가져오기
   return new Intl.DateTimeFormat(lang, {
     year: 'numeric',

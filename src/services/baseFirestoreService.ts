@@ -1,4 +1,4 @@
-import { db } from './firebase.ts';
+import { db } from './firebase';
 import { collection, getDocs, getDoc, doc, addDoc, updateDoc, deleteDoc, query, where, CollectionReference, DocumentData } from 'firebase/firestore';
 
 /**
@@ -56,8 +56,8 @@ class BaseFirestoreService<T extends DocumentData> {
    * @returns {Promise<void>}
    */
   async update(id: string, data: Partial<T>): Promise<void> {
-    const docRef = doc(db, this.collectionRef.path, id);
-    await updateDoc(docRef, data);
+    const docRef = doc(this.collectionRef, id);
+    await updateDoc(docRef, data as any);
   }
 
   /**
@@ -83,7 +83,7 @@ class BaseFirestoreService<T extends DocumentData> {
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map(doc => ({
       id: doc.id,
-      ...doc.data()
+      ...(doc.data() as T)
     }));
   }
 }

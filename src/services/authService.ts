@@ -1,9 +1,10 @@
-import { auth } from './firebase.ts';
+import { auth } from './firebase';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  User,
 } from 'firebase/auth';
 
 /**
@@ -12,7 +13,7 @@ import {
  * @param {string} password
  * @returns {Promise<UserCredential>}
  */
-export const login = async (email, password) => {
+export const login = async (email: string, password: string) => {
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
@@ -22,7 +23,7 @@ export const login = async (email, password) => {
  * @param {string} password
  * @returns {Promise<UserCredential>}
  */
-export const register = async (email, password) => {
+export const register = async (email: string, password: string) => {
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
@@ -39,7 +40,7 @@ export const logout = async () => {
  * @param {(user: User | null) => void} callback - 사용자 객체 또는 null을 받는 콜백 함수
  * @returns {firebase.Unsubscribe}
  */
-export const subscribeToAuthChanges = (callback) => {
+export const subscribeToAuthChanges = (callback: (user: User | null) => void) => {
   return onAuthStateChanged(auth, callback);
 };
 
@@ -49,4 +50,13 @@ export const subscribeToAuthChanges = (callback) => {
  */
 export const getCurrentUser = () => {
   return auth.currentUser;
+};
+
+// authService 객체로 모든 인증 관련 함수들을 export
+export const authService = {
+  login,
+  register,
+  logout,
+  subscribeToAuthChanges,
+  getCurrentUser,
 };

@@ -1,7 +1,7 @@
-import BaseFirestoreService from './baseFirestoreService.ts';
-import { Activity } from '../types/Activity.ts';
+import BaseFirestoreService from './baseFirestoreService';
+import { Activity } from '../types/Activity';
 
-class ActivityService extends BaseFirestoreService {
+class ActivityService extends BaseFirestoreService<Activity> {
   constructor() {
     super('activities');
   }

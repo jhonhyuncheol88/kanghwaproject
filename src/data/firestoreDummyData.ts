@@ -155,6 +155,17 @@ export const addCreatorDummyData = async () => {
       createdAt: Timestamp.now(),
       authorId: 'admin123',
     },
+    {
+      creatorName: '유우선생',
+      handle: '@유우선생',
+      platform: 'youtube',
+      profileUrl: 'http://googleusercontent.com/youtube.com/channel/UCv-8l1k1p_g-p3d-i-24gLg',
+      description: '자기효능감+그림+의식적인학습',
+      thumbnailUrl: 'https://yt3.ggpht.com/ytc/AAUvwnh-v_8l1k1p_g-p3d-i-24gLg=s88-c-k-c0x00ffffff-no-rj',
+      categories: ['교육', '그림', '자기계발'],
+      createdAt: Timestamp.now(),
+      authorId: null,
+    },
   ];
 
   for (const data of dummyCreators) {

@@ -1,7 +1,7 @@
-import BaseFirestoreService from './baseFirestoreService.ts';
-import { Property } from '../types/Property.ts';
+import BaseFirestoreService from './baseFirestoreService';
+import { Property } from '../types/Property';
 
-class PropertyService extends BaseFirestoreService {
+class PropertyService extends BaseFirestoreService<Property> {
   constructor() {
     super('properties');
   }

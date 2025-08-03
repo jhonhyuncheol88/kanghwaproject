@@ -1,9 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
-import Button from './Button.tsx';
+import Button from './Button';
 
-const NavItem = ({ to, children }) => (
+interface NavItemProps {
+  to: string;
+  children: React.ReactNode;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ to, children }) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
@@ -27,15 +32,16 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
         <Link to="/" className="text-xl sm:text-2xl font-bold text-primary">강화섬살이</Link>
         <nav className="hidden md:flex items-center space-x-6">
-          <NavItem to="/workcation">워케이션</NavItem>
+          {/* <NavItem to="/workcation">워케이션</NavItem> */}
           <NavItem to="/island-life">섬살이 정보</NavItem>
-          <NavItem to="/culture">섬의 문화</NavItem>
+          {/* <NavItem to="/culture">섬의 문화</NavItem> */}
           <NavItem to="/creators">강화의 크리에이터</NavItem>
         </nav>
         <div className="flex items-center">
-          <Button onClick={toggleLanguage} variant="secondary" size="sm">
+          {/* 번역 버튼 주석처리 */}
+          {/* <Button onClick={toggleLanguage} variant="secondary" size="sm">
             {i18n.language === 'ko' ? 'EN' : 'KO'}
-          </Button>
+          </Button> */}
           {/* 모바일 메뉴 버튼 (추후 구현) */}
         </div>
       </div>

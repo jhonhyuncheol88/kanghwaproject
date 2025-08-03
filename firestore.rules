@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 모든 컬렉션에 대한 읽기 전용 규칙 (로그인 없이 접근 가능)
+    
+    // activities 컬렉션 - 문화/행사 정보
+    match /activities/{activityId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    // properties 컬렉션 - 부동산 정보
+    match /properties/{propertyId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    // creators 컬렉션 - 크리에이터 정보
+    match /creators/{creatorId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    // 워케이션 관련 컬렉션들
+    match /workcation-cafes/{cafeId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    match /workcation-accommodations/{accommodationId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    match /workcation-courses/{courseId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    // 섬생활 부동산 컬렉션
+    match /island-life-properties/{propertyId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    // 크리에이터 레거시 컬렉션
+    match /creators-legacy/{creatorId} {
+      allow read: if true;
+      allow write: if true; // 개발용 - 나중에 false로 변경
+    }
+    
+    // posts 컬렉션 - 커뮤니티 게시글
+    match /posts/{postId} {
+      allow read: if true;
+      allow write: if false; // 로그인 후 사용자만 쓰기 가능하도록 나중에 수정
+      
+      // 댓글 하위 컬렉션
+      match /comments/{commentId} {
+        allow read: if true;
+        allow write: if false; // 로그인 후 사용자만 쓰기 가능하도록 나중에 수정
+        
+        // 댓글 좋아요 하위 컬렉션
+        match /likes/{userId} {
+          allow read: if true;
+          allow write: if false; // 로그인 후 사용자만 쓰기 가능하도록 나중에 수정
+        }
+      }
+      
+      // 게시글 좋아요 하위 컬렉션
+      match /likes/{userId} {
+        allow read: if true;
+        allow write: if false; // 로그인 후 사용자만 쓰기 가능하도록 나중에 수정
+      }
+    }
+    
+    // users 컬렉션 - 사용자 정보 (현재는 읽기만 허용)
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if false; // 로그인 후 본인만 쓰기 가능하도록 나중에 수정
+      
+      // 차단한 사용자 하위 컬렉션
+      match /blockedUsers/{blockedUserId} {
+        allow read: if true;
+        allow write: if false; // 로그인 후 본인만 쓰기 가능하도록 나중에 수정
+      }
+    }
+    
+    // reports 컬렉션 - 신고 내역 (관리자만 접근)
+    match /reports/{reportId} {
+      allow read: if false; // 관리자만 읽기 가능하도록 나중에 수정
+      allow write: if false; // 관리자만 쓰기 가능하도록 나중에 수정
+    }
+  }
+} 

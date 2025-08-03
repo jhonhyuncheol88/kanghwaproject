@@ -1,8 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Container from './Container.tsx';
+import Container from './Container';
 
-const GridItem = ({ item }) => {
+interface GridItemData {
+  title: string;
+  mainImage: string;
+  tags: string[];
+  type: 'property' | 'activity';
+}
+
+interface GridItemProps {
+  item: GridItemData;
+}
+
+const GridItem: React.FC<GridItemProps> = ({ item }) => {
   const { title, mainImage, tags, type } = item;
   const typeText = type === 'property' ? '부동산' : '문화활동';
   const typeBgColor = type === 'property' ? 'bg-accent' : 'bg-secondary';
@@ -23,7 +34,7 @@ const GridItem = ({ item }) => {
         <div className="p-4">
           <h3 className="text-lg font-bold mb-2 truncate">{title}</h3>
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {tags.map((tag: string) => (
               <span key={tag} className="bg-gray-200 text-text-light text-xs px-2 py-1 rounded-full">
                 {tag}
               </span>

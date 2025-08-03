@@ -1,4 +1,24 @@
-export const contents = [
+// 내부 더미 데이터 - Firebase 데이터로 대체됨
+// 이 파일은 더 이상 사용되지 않습니다.
+
+interface ContentItem {
+  id: string;
+  type: 'property' | 'activity';
+  title: string;
+  description: string;
+  mainImage: string;
+  tags: string[];
+  price?: string;
+  area?: string;
+  date?: string;
+  organizer?: string;
+}
+
+// Firebase 데이터를 사용하므로 내부 더미 데이터는 비활성화
+export const contents: ContentItem[] = [];
+
+/*
+export const contents: ContentItem[] = [
   {
     id: 'p1',
     type: 'property', // 'property' or 'activity'
@@ -40,3 +60,4 @@ export const contents = [
     organizer: '강화군 문화관광과',
   },
 ];
+*/

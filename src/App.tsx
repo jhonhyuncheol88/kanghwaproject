@@ -1,18 +1,37 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header.tsx';
-import Footer from './components/Footer.tsx';
-import Home from './pages/Home.tsx';
-import Workcation from './pages/Workcation.tsx';
-import IslandLife from './pages/IslandLife.tsx';
-import Culture from './pages/Culture.tsx';
-import Creators from './pages/Creators.tsx';
-import { addAllDummyData } from './data/firestoreDummyData.ts'; // 더미 데이터 임포트
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+// import Workcation from './pages/Workcation';
+import IslandLife from './pages/IslandLife';
+// import Culture from './pages/Culture';
+import Creators from './pages/Creators';
+import MockDataLoader from './services/mockDataLoader';
+import './utils/devTools'; // 개발자 도구 유틸리티 로드
 
 function App() {
   useEffect(() => {
-    // 개발 환경에서만 더미 데이터 추가 (한 번 실행 후 주석 처리 권장)
-    // addAllDummyData();
+    // 앱 시작 시 목업 데이터 자동 초기화 (캐시 적용)
+    const initializeData = async () => {
+      try {
+        const dataLoader = MockDataLoader.getInstance();
+        await dataLoader.initializeMockData();
+        
+        // 캐시 상태 로그 (개발자 도구에서 확인 가능)
+        const cacheStatus = dataLoader.getCacheStatus();
+        console.log('📊 캐시 상태:', cacheStatus);
+        
+        // 전역 객체에 데이터 로더 노출 (개발자 도구에서 접근 가능)
+        (window as any).mockDataLoader = dataLoader;
+        console.log('🔧 개발자 도구에서 window.mockDataLoader로 접근 가능');
+        
+      } catch (error) {
+        console.error('목업 데이터 초기화 실패:', error);
+      }
+    };
+
+    initializeData();
   }, []);
 
   return (
@@ -22,10 +41,11 @@ function App() {
         <main className="flex-grow container mx-auto px-4 sm:px-6 pt-24 sm:pt-28">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/workcation" element={<Workcation />} />
+            {/* <Route path="/workcation" element={<Workcation />} /> */}
             <Route path="/island-life" element={<IslandLife />} />
-            <Route path="/culture" element={<Culture />} />
+            {/* <Route path="/culture" element={<Culture />} /> */}
             <Route path="/creators" element={<Creators />} />
+         
           </Routes>
         </main>
         <Footer />

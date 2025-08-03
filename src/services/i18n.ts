@@ -18,4 +18,4 @@ i18n
     debug: process.env.NODE_ENV === 'development', // 개발 모드에서만 디버그 로그 출력
   });
 
-export default i18n;
+export default i18n; 

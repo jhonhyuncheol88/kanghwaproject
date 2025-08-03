@@ -1,7 +1,7 @@
-import BaseFirestoreService from './baseFirestoreService.ts';
-import { Creator } from '../types/Creator.ts';
+import BaseFirestoreService from './baseFirestoreService';
+import { Creator } from '../types/Creator';
 
-class CreatorService extends BaseFirestoreService {
+class CreatorService extends BaseFirestoreService<Creator> {
   constructor() {
     super('creators');
   }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { activityService } from '../services/activityService.ts'; // activityService 임포트
-import CafeCard from '../components/CafeCard.tsx';
-import { Activity } from '../types/Activity.ts';
+import { activityService } from '../services/activityService'; // activityService 임포트
+import CafeCard from '../components/CafeCard';
+import { Activity } from '../types/Activity';
 
-const Section = ({ title, children }) => (
+const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <section className="mb-16">
     <h2 className="text-3xl font-bold mb-8 text-center text-text-main">{title}</h2>
     {children}
@@ -13,11 +13,14 @@ const Section = ({ title, children }) => (
 const Workcation = () => {
   const [cafes, setCafes] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCafes = async () => {
       try {
+        setLoading(true);
+        setError(null);
+        
         // activityService를 사용하여 워케이션 카페 데이터 가져오기
         const fetchedCafes = await activityService.getActivitiesByCategoryAndTag('experience', '#워케이션카페');
         setCafes(fetchedCafes);
@@ -47,7 +50,12 @@ const Workcation = () => {
       <Section title="일하기 좋은 카페">
         {cafes.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cafes.map(cafe => <CafeCard key={cafe.id} cafe={cafe} />)}
+            {cafes.map(cafe => <CafeCard key={cafe.id} cafe={{
+              title: cafe.title,
+              description: cafe.description,
+              mainImage: cafe.mainImage,
+              tags: cafe.tags || []
+            }} />)}
           </div>
         ) : (
           <p className="text-center text-text-light">현재 등록된 카페가 없습니다.</p>
