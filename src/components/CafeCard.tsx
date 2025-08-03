@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Container from './Container';
+import Container from './Container.tsx';
+import { Activity } from '../types/Activity.ts';
 
 const CafeCard = ({ cafe }) => {
-  const { name, description, image, tags } = cafe;
+  const { title, description, mainImage, tags } = cafe;
 
   return (
     <motion.div
@@ -12,14 +13,14 @@ const CafeCard = ({ cafe }) => {
       transition={{ duration: 0.5 }}
     >
       <Container>
-        <img src={image} alt={name} className="w-full h-48 object-cover" />
+        <img src={mainImage} alt={title} className="w-full h-48 object-cover" />
         <div className="p-5">
-          <h3 className="text-xl font-bold mb-2 text-text-main">{name}</h3>
+          <h3 className="text-xl font-bold mb-2 text-text-main">{title}</h3>
           <p className="text-text-light mb-4 h-20 overflow-hidden">{description}</p>
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {tags && tags.map((tag) => (
               <span key={tag} className="bg-secondary text-text-main text-xs font-semibold px-3 py-1 rounded-full">
-                #{tag}
+                {tag}
               </span>
             ))}
           </div>

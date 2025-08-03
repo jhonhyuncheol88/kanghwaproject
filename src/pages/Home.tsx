@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentGrid from '../components/ContentGrid';
+import ContentGrid from '../components/ContentGrid.tsx';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {

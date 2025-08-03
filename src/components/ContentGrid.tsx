@@ -1,6 +1,6 @@
 import React from 'react';
-import { contents } from '../data/mockData';
-import GridItem from './GridItem';
+import { contents } from '../data/mockData.ts';
+import GridItem from './GridItem.tsx';
 
 const ContentGrid = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
-import Button from './Button';
+import Button from './Button.tsx';
 
 const NavItem = ({ to, children }) => (
   <NavLink

@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css'; // Tailwind CSS를 포함합니다.
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './services/i18n'; // i18next 초기화
+import App from './App.tsx';
+import reportWebVitals from './reportWebVitals.ts';
+import './services/i18n.ts'; // i18next 초기화
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

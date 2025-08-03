@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Container from './Container';
+import Container from './Container.tsx';
 
 const GridItem = ({ item }) => {
   const { title, mainImage, tags, type } = item;

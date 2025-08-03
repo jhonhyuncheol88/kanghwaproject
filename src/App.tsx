@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Workcation from './pages/Workcation';
-import IslandLife from './pages/IslandLife';
-import Culture from './pages/Culture';
-import Creators from './pages/Creators';
+import Header from './components/Header.tsx';
+import Footer from './components/Footer.tsx';
+import Home from './pages/Home.tsx';
+import Workcation from './pages/Workcation.tsx';
+import IslandLife from './pages/IslandLife.tsx';
+import Culture from './pages/Culture.tsx';
+import Creators from './pages/Creators.tsx';
+import { addAllDummyData } from './data/firestoreDummyData.ts'; // 더미 데이터 임포트
 
 function App() {
+  useEffect(() => {
+    // 개발 환경에서만 더미 데이터 추가 (한 번 실행 후 주석 처리 권장)
+    // addAllDummyData();
+  }, []);
+
   return (
     <Router>
       <div className="bg-background min-h-screen flex flex-col">
